@@ -1,0 +1,860 @@
+[cdc/config]
+
+years= 2011         	      # years to consider (list, separated by commas)
+numRecordsPerYear = -1        # number of records to consider per year ( -1=all)
+
+#----------------------------------------------------------------------
+# define variables to read from denominator file. Note that these vars
+# will be read in the order in which they are listed.
+#----------------------------------------------------------------------
+denomVars = restatus,revision,mager,dplural
+
+#----------------------------------------------------------------------
+# define revised variables to read from denominator file. Note that
+# these vars will be read in the order in which they are listed if the
+# 'revision' flag uses 2003 birth certificate. These vars are read
+# after 'denomVars' above.
+#----------------------------------------------------------------------
+denomVarsRevised = rdmeth_rec,me_trial,
+ 		 rf_diab,rf_gest,rf_phyp,rf_ghyp,
+ 		 rf_eclam,rf_ppterm,rf_cesar,
+ 		 rf_cesarn,wtgain_rec,lbo,tbo,
+		 previs_rec,cig_rec,
+ 		 mbrace,umhisp,
+ 		 urf_diab,urf_chyper,urf_phyper,urf_eclam,
+		 combgest,me_pres,
+		 pwgt_r,bmi_r,
+		 cig_0,cig_1,cig_2,cig_3
+
+#----------------------------------------------------------------------
+# The next sections Define file locations (columns) and datatypes for
+# CDC variables of interest.  These should match speficiations called
+# out in CDC user guides and are done on a per-year basis to
+# accomodate the fact that variable locations are not necessarily
+# consistent across yearly boundaries from CDC.
+#----------------------------------------------------------------------
+
+[cdc/varindex/revision]
+# Whether state used 2003 version of birth certificate (revised) or
+# 1989 version of birth certificate (unrevised)
+
+len  = 1
+type = unknown
+
+2005 = 7                # pg. 1 of LinkPE06Guide
+2006 = 7                # pg. 1 of LinkPE06Guide
+2007 = 7
+2008 = 7
+2009 = 7                # pg. 2 of LinkPE09Guide (calls it VERSION)
+2010 = 7
+2011 = 7
+2012 = 7
+2013 = 7
+# note: revision disappers in 2014; still defining here but parsing
+# code has altered code for years >= 2014
+2014 = 7
+2015 = 7
+2016 = 7
+2017 = 7
+
+# Mother's Bridged Race
+[cdc/varindex/mbrace]
+len  = 2
+type = unknown
+
+2005 = 139
+2006 = 139
+2007 = 139
+2008 = 139
+2009 = 139
+2010 = 139
+2011 = 139
+2012 = 139
+2013 = 139
+2014 = 108	# pg. 19, MRACE15 (matches mbrace for values 01 thru 14)
+2015 = 108
+2016 = 108      # pg. 22, named MRACE_R15
+2017 = 108      # pg. 22, named MRACER15
+
+# Mother's Hispanic Origin
+[cdc/varindex/umhisp]
+len  = 1
+type = int
+
+2005 = 148
+2006 = 148
+2007 = 148
+2008 = 148
+2009 = 148
+2010 = 148
+2011 = 148
+2012 = 148
+2013 = 148
+2014 = 115	# pg. 21 (MHISP_R)
+2015 = 115
+2016 = 115
+2017 = 115
+
+# 2005_flag = 569
+# 2006_flag = 569
+# 2007_flag = 569
+2008_flag = 569
+2009_flag = 569
+2010_flag = 569
+2011_flag = 569
+2012_flag = 569
+2013_flag = 569
+2014_flag = 116  # pg. 21
+2015_flag = 116
+2016_flag = 116
+2017_flag = 116
+
+# Diabetes
+[cdc/varindex/urf_diab]
+len  = 1
+type = int
+
+2005 = 331
+2006 = 331
+2007 = 331
+2008 = 331
+2009 = 331
+2010 = 331
+2011 = 331
+2012 = 331
+2013 = 331
+2014 = 1331
+2015 = 1331
+2016 = 1331
+2017 = 1331
+
+# Chronic hypertension
+[cdc/varindex/urf_chyper]
+len  = 1
+type = int
+
+2005 = 335
+2006 = 335
+2007 = 335
+2008 = 335
+2009 = 335
+2010 = 335
+2011 = 335
+2012 = 335
+2013 = 335
+2014 = 1332
+2015 = 1332
+2016 = 1332
+2017 = 1332     # uRF_Chype
+
+# Prepregnancy associated hypertension
+[cdc/varindex/urf_phyper]
+len  = 1
+type = int
+
+2005 = 336
+2006 = 336
+2007 = 336
+2008 = 336
+2009 = 336
+2010 = 336
+2011 = 336
+2012 = 336
+2013 = 336
+2014 = 1333
+2015 = 1333
+2016 = 1333
+2017 = 1333     # uRF_Phype
+
+# Eclampsia
+[cdc/varindex/urf_eclam]
+len  = 1
+type = int
+
+2005 = 337
+2006 = 337
+2007 = 337
+2008 = 337
+2009 = 337
+2010 = 337
+2011 = 337
+2012 = 337
+2013 = 337
+2014 = 1334
+2015 = 1334
+2016 = 1334
+2017 = 1334     # uRF_Ehype
+
+# Prepregnancy diabetes
+[cdc/varindex/rf_diab]
+len  = 1
+type = unknown
+
+2005 = 313
+2006 = 313
+2007 = 313
+2008 = 313
+2009 = 313
+2010 = 313
+2011 = 313
+2012 = 313
+2013 = 313
+2014 = 313  	# renamed to RF_PDIAB
+2015 = 313
+2016 = 313
+2017 = 313
+
+
+# Gestational diabetes
+[cdc/varindex/rf_gest]
+len  = 1
+type = unknown
+
+2005 = 314
+2006 = 314
+2007 = 314
+2008 = 314
+2009 = 314
+2010 = 314
+2011 = 314
+2012 = 314
+2013 = 314
+2014 = 314 	# renamed to RF_GDIAB
+2015 = 314
+2016 = 314
+2017 = 314
+
+# Prepregnancy Hypertension
+[cdc/varindex/rf_phyp]
+len  = 1
+type = unknown
+
+2005 = 315
+2006 = 315
+2007 = 315
+2008 = 315
+2009 = 315
+2010 = 315
+2011 = 315
+2012 = 315
+2013 = 315
+2014 = 315
+2015 = 315
+2016 = 315
+2017 = 315
+
+# Gestational hypertension
+[cdc/varindex/rf_ghyp]
+len  = 1
+type = unknown
+
+2005 = 316
+2006 = 316
+2007 = 316
+2008 = 316
+2009 = 316
+2010 = 316
+2011 = 316
+2012 = 316
+2013 = 316
+2014 = 316	# renamed to RF_GHYPE
+2015 = 316
+2016 = 316
+2017 = 316
+
+# Eclampsia
+[cdc/varindex/rf_eclam]
+len  = 1
+type = unknown
+
+2005 = 317
+2006 = 317
+2007 = 317
+2008 = 317
+2009 = 317
+2010 = 317
+2011 = 317
+2012 = 317
+2013 = 317
+2014 = 317	# renamed to RF_EHYPE
+2015 = 317
+2016 = 317
+2017 = 317
+
+# Previous Preterm Birth
+[cdc/varindex/rf_ppterm]
+len  = 1
+type = unknown
+
+2005 = 318
+2006 = 318
+2007 = 318
+2008 = 318
+2009 = 318
+2010 = 318
+2011 = 318
+2012 = 318
+2013 = 318
+2014 = 318	# renamed to RF_PPB
+2015 = 318
+2016 = 318	# back to rf_ppterm
+2017 = 318      # and back to RF_PPB
+
+# Previous Cesarean deliveries
+[cdc/varindex/rf_cesar]
+len  = 1
+type = unknown
+
+2005 = 324
+2006 = 324
+2007 = 324
+2008 = 324
+2009 = 324
+2010 = 324
+2011 = 324
+2012 = 324
+2013 = 324
+2014 = 331	# pg. 31
+2015 = 331
+2016 = 331
+2017 = 331
+
+# Number of previous Cesarean deliveries
+[cdc/varindex/rf_cesarn]
+len  = 2
+#type = int
+type = unknown
+
+2005 = 325
+2006 = 325
+2007 = 325
+2008 = 325
+2009 = 325
+2010 = 325
+2011 = 325
+2012 = 325
+2013 = 325
+2014 = 332	# pg. 31
+2015 = 332
+2016 = 332
+2017 = 332
+
+2014_flag = 336
+2015_flag = 336
+2016_flag = 336
+2017_flag = 336
+
+# Weight gain recode
+[cdc/varindex/wtgain_rec]
+len  = 1
+type = int
+
+2005 = 278
+2006 = 278
+2007 = 278
+2008 = 278
+2009 = 278
+2010 = 278
+2011 = 278
+2012 = 278
+2013 = 278
+2014 = 306
+2015 = 306
+2016 = 306
+2017 = 306
+
+# Body Mass Index Recode (prepregnancy)
+[cdc/varindex/bmi_r]
+len  = 1
+type = int
+
+2005 = skip
+2006 = skip
+2007 = skip
+2008 = skip
+2009 = skip
+2010 = skip
+2011 = 533
+2012 = 533
+2013 = 533
+2014 = 287
+2015 = 287
+2016 = 287
+2017 = 287
+
+2011_flag = 576
+2012_flag = 576
+2013_flag = 576
+2014_flag = 282
+2015_flag = 282
+2016_flag = 282
+2017_flag = 282
+
+
+# Pre-pregnancy weight (recode)
+[cdc/varindex/pwgt_r]
+len  = 3
+type = int
+
+2005 = skip
+2006 = skip
+2007 = skip
+2008 = skip
+2009 = skip
+2010 = skip
+2011 = 549
+2012 = 549
+2013 = 549
+2014 = 292
+2015 = 292
+2016 = 292
+2017 = 292
+
+2011_flag = 577
+2012_flag = 577
+2013_flag = 577
+2014_flag = 295
+2015_flag = 295
+2016_flag = 295
+2017_flag = 295
+
+# Live birth order
+[cdc/varindex/lbo]
+len  = 1
+type = int
+
+2005 = 212
+2006 = 212
+2007 = 212
+2008 = 212
+2009 = 212
+2010 = 212
+2011 = 212
+2012 = 212
+2013 = 212
+2014 = 179	# pg. 25
+2015 = 179
+2016 = 179
+2017 = 179
+
+# Total birth order
+[cdc/varindex/tbo]
+len  = 1
+type = int
+
+2005 = 217
+2006 = 217
+2007 = 217
+2008 = 217
+2009 = 217
+2010 = 217
+2011 = 217
+2012 = 217
+2013 = 217
+2014 = 182	# pg. 26
+2015 = 182
+2016 = 182
+2017 = 182      # named TPO_REC
+
+# Number of prenatal visits recode
+[cdc/varindex/previs_rec]
+len  = 2
+type = int
+
+2005 = 272
+2006 = 272
+2007 = 272
+2008 = 272
+2009 = 272
+2010 = 272
+2011 = 272
+2012 = 272
+2013 = 272
+2014 = 242	# pg. 27
+2015 = 242
+2016 = 242      # named PNCVIS_R (pg. 29)
+2017 = 242      # back to PREVIS_REC
+ 
+# Cigarrette Recode
+[cdc/varindex/cig_rec]
+len  = 1
+type = unknown
+
+2005 = 294
+2006 = 294
+2007 = 294
+2008 = 294
+2009 = 294
+2010 = 294
+2011 = 294
+2012 = 294
+2013 = 294
+2014 = 269	# pg. 29
+2015 = 269
+2016 = 269
+2017 = 269
+
+# Cigarettes before pregnancy
+[cdc/varindex/cig_0]
+len  = 2
+type = int
+
+2005 = skip
+2006 = skip
+2007 = skip
+2008 = skip
+2009 = skip
+2010 = skip
+2011 = 282
+2012 = 282
+2013 = 282
+2014 = 253     # pg. 28
+2015 = 253
+2016 = 253
+2017 = 253
+
+2011_flag=672
+2012_flag=672
+2013_flag=672
+2014_flag=265
+2015_flag=265
+2016_flag=265
+2017_flag=265
+
+
+# Cigarettes 1st trimester
+[cdc/varindex/cig_1]
+len  = 2
+type = int
+
+2005 = skip
+2006 = skip
+2007 = skip
+2008 = skip
+2009 = skip
+2010 = skip
+2011 = 284
+2012 = 284
+2013 = 284
+2014 = 255
+2015 = 255
+2016 = 255
+2017 = 255
+
+2011_flag=575   # same reporting flag used for cig_1, cig_2, and cig_3
+2012_flag=575
+2013_flag=575
+2014_flag=266
+2015_flag=266
+2016_flag=266
+2017_flag=266
+
+# Cigarettes 2nd trimester
+[cdc/varindex/cig_2]
+len  = 2
+type = int
+
+2005 = skip
+2006 = skip
+2007 = skip
+2008 = skip
+2009 = skip
+2010 = skip
+2011 = 286
+2012 = 286
+2013 = 286
+2014 = 257
+2015 = 257
+2016 = 257
+2017 = 257
+
+2011_flag=575   # same reporting flag used for cig_1, cig_2, and cig_3
+2012_flag=575
+2013_flag=575
+2014_flag=267
+2015_flag=267
+2016_flag=267
+2017_flag=267
+
+# Cigarettes 3rd trimester
+[cdc/varindex/cig_3]
+len  = 2
+type = int
+
+2005 = skip
+2006 = skip
+2007 = skip
+2008 = skip
+2009 = skip
+2010 = skip
+2011 = 288
+2012 = 288
+2013 = 288
+2014 = 259
+2015 = 259
+2016 = 259
+2017 = 259
+
+2011_flag=575    # same reporting flag used for cig_1, cig_2, and cig_3
+2012_flag=575
+2013_flag=575
+2014_flag=268
+2015_flag=268
+2016_flag=268
+2017_flag=268
+
+# Gestation - detail in weeks
+[cdc/varindex/combgest]
+len  = 2
+type = int
+
+2005 = 451      # pg. 46
+2006 = 451
+2007 = 451
+2008 = 451	# pg. 41
+2009 = 451
+2010 = 451
+2011 = 451
+2012 = 451
+2013 = 451
+2014 = 490
+2015 = 490
+2016 = 490	# pg. 39 (called LMPGEST)
+2017 = 490      # pg. 39, back to COMBGEST
+
+[cdc/varindex/me_trial]
+
+len  = 1
+type = unknown
+
+2005 = 394
+2006 = 394		# pg. 22 of LinkPE06Guide
+2007 = 394
+2008 = 394
+2009 = 394
+2010 = 394
+2011 = 394
+2012 = 394
+2013 = 394
+2014 = 403              # pg. 33
+2015 = 403
+2016 = 403
+2017 = 403
+
+# reporting flag locations
+2005_flag = 621
+2006_flag = 621		# pg. 22 of LinkPE04Guide
+2007_flag = 621
+2008_flag = 621
+2009_flag = 621
+2010_flag = 621
+2011_flag = 621
+2012_flag = 621
+2013_flag = 621
+2014_flag = 406
+2015_flag = 406
+2016_flag = 406
+2017_flag = 406
+
+# Delivery Method Recode (Revised)
+[cdc/varindex/rdmeth_rec]
+
+len  = 1
+#type = int
+type = unknown
+
+2003 = 401		# pg. 44 of LinkPE03Guide (dmeth_rec for U,R)
+2004 = 401		# pg. 28 of LinkPE04Guide (dmeth_rec for U,R)
+2005 = 401              # pg. 28 of LinkPE05Guide (rdmeth_rec for R)
+2006 = 401		# pg. 23 of LinkPE06Guide
+2007 = 401              # pg. 20
+2008 = 401
+2009 = 401
+2010 = 401
+2011 = 401
+2012 = 401
+2013 = 401
+2014 = 407		# pg. 33
+2015 = 407
+2016 = 407              # dmeth_rec (pg. 35)
+2017 = 407
+
+2005_flag = 679
+2006_flag = 679		# pg. 23 of LinkPE06Guide (rdmeth_rec)
+2007_flag = 679
+# note: 2008 data has entries for rdmeth_rec for revised reporting, but the reporting flag is empty
+#2008_flag = 679
+#2009_flag = 679
+#2010_flag = 679
+2011_flag = 679
+2012_flag = 679
+2013_flag = 679
+2014_flag = 409
+2015_flag = 409
+2016_flag = 409
+2017_flag = 409
+
+[cdc/varindex/mager]
+
+len  = 2
+type = int
+
+2003 = 89		# pg. 21 of LinkPE03Guide (mager41)
+2004 = 89
+2005 = 89
+2006 = 89
+2007 = 89
+2008 = 89
+2009 = 89
+2010 = 89
+2011 = 89
+2012 = 89
+2013 = 89
+2014 = 75		# pg. 18 of LinkPE14Guide
+2015 = 75
+2016 = 75
+2017 = 75
+
+# restatus for num/denom birth files
+[cdc/varindex/restatus]
+
+len  = 1
+type = int
+2003 = 138
+2004 = 138
+2005 = 138
+2006 = 138
+2007 = 138
+2008 = 138
+2009 = 138
+2010 = 138
+2011 = 138
+2012 = 138
+2013 = 138
+2014 = 104
+2015 = 104
+2016 = 104
+2017 = 104
+
+# Plurality Recode
+[cdc/varindex/dplural]
+len  = 1
+type = int
+
+2003 = 423
+2004 = 423
+2005 = 423
+2006 = 423
+2007 = 423
+2008 = 423
+2009 = 423
+2010 = 423
+2011 = 423
+2012 = 423
+2013 = 423
+2014 = 454		# pg. 34 of LinkPE14Guide
+2015 = 454
+2016 = 454		# plural_r (p. 37)
+2017 = 454
+
+# Fetal Presentation
+[cdc/varindex/me_pres]
+len  = 1
+type = int
+
+2005 = 392
+2006 = 392
+2007 = 392
+2008 = 392
+2009 = 392
+2010 = 392
+2011 = 392
+2012 = 392
+2013 = 392
+2014 = 401
+2015 = 401
+2016 = 401
+2017 = 401
+
+# reporting flag locations
+2005_flag = 619
+2006_flag = 619
+2007_flag = 619
+2008_flag = 619
+2009_flag = 619
+2010_flag = 619
+2011_flag = 619
+2012_flag = 619
+2013_flag = 619
+2014_flag = 404
+2015_flag = 404
+2016_flag = 404
+2017_flag = 404
+
+#----------------------------------------------------------------------
+# Define top-level housing directory for raw CDC data files
+#----------------------------------------------------------------------
+[cdc-raw]
+dataDir = ./rawCDCdata/period/
+
+# Define Period data file names and location for each year
+[cdc-raw/2003]
+numeratorFile = ${cdc-raw:dataDir}/2003/LinkPE03USNum.dat
+denomFile     = ${cdc-raw:dataDir}/2003/LinkPE03USDen.dat
+
+[cdc-raw/2004]
+numeratorFile = ${cdc-raw:dataDir}/2004/LinkPE04USNum.dat
+denomFile     = ${cdc-raw:dataDir}/2004/LinkPE04USDen.dat
+
+[cdc-raw/2005]
+numeratorFile = ${cdc-raw:dataDir}/2005/VS05LINK.USNUMPUB
+denomFile     = ${cdc-raw:dataDir}/2005/VS05LINK.USDENPUB
+
+[cdc-raw/2006]
+numeratorFile = ${cdc-raw:dataDir}/2006/VS06LINK.USNUMPUB
+denomFile     = ${cdc-raw:dataDir}/2006/VS06LINK.USDENPUB
+
+[cdc-raw/2007]
+numeratorFile = ${cdc-raw:dataDir}/2007/VS07LINK.USNUMPUB
+denomFile     = ${cdc-raw:dataDir}/2007/VS07LINK.USDENPUB
+
+[cdc-raw/2008]
+numeratorFile = ${cdc-raw:dataDir}/2008/VS08LINK.USNUMPUB
+denomFile     = ${cdc-raw:dataDir}/2008/VS08LINK.USDENPUB
+
+[cdc-raw/2009]
+numeratorFile = ${cdc-raw:dataDir}/2009/VS09LINK.USNUMPUB
+denomFile     = ${cdc-raw:dataDir}/2009/VS09LINK.USDENPUB
+
+[cdc-raw/2010]
+numeratorFile = ${cdc-raw:dataDir}/2010/VS10LINK.USNUMPUB
+denomFile     = ${cdc-raw:dataDir}/2010/VS10LINK.USDENPUB
+
+[cdc-raw/2011]
+numeratorFile = ${cdc-raw:dataDir}/2011/VS11LINK.USNUMPUB
+denomFile     = ${cdc-raw:dataDir}/2011/VS11LINK.USDENPUB
+
+[cdc-raw/2012]
+numeratorFile = ${cdc-raw:dataDir}/2012/VS12LINK.USNUMPUB
+denomFile     = ${cdc-raw:dataDir}/2012/VS12LINK.USDENPUB
+
+[cdc-raw/2013]
+numeratorFile = ${cdc-raw:dataDir}/2013/VS13LINK.USNUMPUB
+denomFile     = ${cdc-raw:dataDir}/2013/VS13LINK.USDENPUB
+
+[cdc-raw/2014]
+numeratorFile = ${cdc-raw:dataDir}/2014/VS14LINK.USNUMPUB
+denomFile     = ${cdc-raw:dataDir}/2014/VS14LINK.USDENPUB
+
+[cdc-raw/2015]
+numeratorFile = ${cdc-raw:dataDir}/2015/VS15LINK.USNUMPUB.modified
+denomFile     = ${cdc-raw:dataDir}/2015/VS15LINK.USDENPUB
+
+[cdc-raw/2016]
+numeratorFile = ${cdc-raw:dataDir}/2016/VS16LINK.USNUMPUB
+denomFile     = ${cdc-raw:dataDir}/2016/VS16LINK.USDENPUB
+
+[cdc-raw/2017]
+numeratorFile = ${cdc-raw:dataDir}/2017/VS17LINK.Public.USNUMPUB
+denomFile     = ${cdc-raw:dataDir}/2017/VS17LINK.Public.USDENPUB
+
