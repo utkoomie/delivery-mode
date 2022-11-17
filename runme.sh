@@ -1,1 +1,1 @@
-docker run -d --name=npj -p 8888:8888 -v /home_nfs/karl/papers/npj2019:/home/karl npj
+docker run -d --name=delivery-mode -p 8888:8888 -v $HOME:/home/karl delivery-mode
