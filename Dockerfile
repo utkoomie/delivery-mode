@@ -1,5 +1,5 @@
 # Pull the latest image of CentOS from the Docker repo
-FROM centos:7
+FROM --platform=linux/amd64 centos:7
 
 # Creator
 MAINTAINER Karl W. Schulz
@@ -22,6 +22,9 @@ RUN yum -y install gcc-c++
 # Include python3 packages from pip
 COPY requirements.txt /
 RUN pip3.6 install -r requirements.txt
+# shap nees to be installed at the end to get
+# dependencies correct
+RUN pip3.6 install shap==0.30.2
 
 # User to run as
 USER karl
